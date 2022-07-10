@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
-Barbie Cipher - A python implementation of the Barbie typewriter encryption
-tables. Copyright (C) 2022 Luca Baffa
+Barbie Cipher - A python implementation of the Barbie Typewriter E-118
+cryptographic capabilities. Copyright (C) 2022 Luca Baffa
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -25,23 +25,24 @@ CIPHERS = {"plain":    "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 class Cipher():
     def __init__(self, cipher: str = "cipher1"):
+        """Define which cipher to use for message coding/decoding"""
         self.cipher = CIPHERS.get(cipher)
 
     def letter_sub(self, letter: str, source: str, destination: str) -> str:
-        """Perform letter substituton from source to destination table"""
+        """Perform letter substitution from source to destination table"""
         table = str.maketrans(source, destination)
         return letter.translate(table)
 
     def code(self, msg: str) -> str:
-        """Code message with one of the encryption mode"""
+        """Code message with one of the ciphers"""
         source = CIPHERS.get("plain")
         coded_msg = "".join(self.letter_sub(x, source, self.cipher)
                             for x in msg)
         return coded_msg
 
     def decode(self, msg: str) -> str:
-        """Decode message with one of the encryption mode"""
+        """Decode message with one of the ciphers"""
         destination = CIPHERS.get("plain")
-        coded_msg = "".join(self.letter_sub(x, self.cipher, destination)
-                            for x in msg)
-        return coded_msg
+        decoded_msg = "".join(self.letter_sub(x, self.cipher, destination)
+                              for x in msg)
+        return decoded_msg

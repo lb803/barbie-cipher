@@ -1,6 +1,6 @@
 # Barbie Cipher
 
-Santa Clause never brought me a Barbie Typewriter E-118 (with cryptographic capabilities) when I was a kid, so to overcome my sadness I wrote this python library to code/decode messages using the typewriter own cipher tables.
+Santa Claus never brought me a Barbie Typewriter E-118 (with cryptographic capabilities) when I was a kid, so to overcome my sadness I wrote this python library to code/decode messages using the typewriter own cipher tables.
 
 _*tl;nr*_ This toy typewriter can code/decode messages kids type with a _mono alphabet substitution_ cipher. The manufacturer pre-loaded four different conversion tables.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
-Barbie Cipher - A python implementation of the Barbie typewriter encryption
-tables. Copyright (C) 2022 Luca Baffa
+Barbie Cipher - A python implementation of the Barbie Typewriter E-118
+cryptographic capabilities. Copyright (C) 2022 Luca Baffa
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
