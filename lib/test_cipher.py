@@ -27,6 +27,15 @@ def test_cipher_selection():
     cipher = Cipher("cipher1")
     assert cipher.cipher == CIPHERS.get("cipher1")
 
+    cipher2 = Cipher("cipher2")
+    assert cipher2.cipher == CIPHERS.get("cipher2")
+
+    cipher3 = Cipher("cipher3")
+    assert cipher3.cipher == CIPHERS.get("cipher3")
+
+    cipher4 = Cipher("cipher4")
+    assert cipher4.cipher == CIPHERS.get("cipher4")
+
 
 def test_cipher_bad_selection():
     cipher = Cipher("foobar")
@@ -34,9 +43,21 @@ def test_cipher_bad_selection():
 
 
 def test_letter_sub():
-    letter = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
-                               CIPHERS.get("cipher1"))
-    assert letter == "."
+    letter1 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
+                                CIPHERS.get("cipher1"))
+    assert letter1 == "."
+
+    letter2 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
+                                CIPHERS.get("cipher2"))
+    assert letter2 == "M"
+
+    letter3 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
+                                CIPHERS.get("cipher3"))
+    assert letter3 == "Z"
+
+    letter4 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
+                                CIPHERS.get("cipher4"))
+    assert letter4 == "B"
 
 
 def test_letter_fallback_sub():

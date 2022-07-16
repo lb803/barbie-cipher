@@ -19,8 +19,17 @@ CIPHERS = {"plain":    "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                        "< = > ¢ £ § €",
            "cipher1":  "icolapxstvybjeruknfhqg;dzw >FAUTCYOLVJDZINQKSEHG<.1PB"
                        "523406789-¨ _ & m @ : \" * ( # W M § ^ , ¢ / ? ! ) % "
-                       "X ' R + € £ ="
-}
+                       "X ' R + € £ =",
+           "cipher2":  "torbiudfhgzcvanqyepskx¢1w; RC>GHAPND<VUBLIKJETOYXM2QF"
+                       "63405789-¨§ ) \" j ? , m # * @ . Z £ ! W + ^ / & ( : "
+                       "1 _ S % = € '",
+           "cipher3":  "hrnctqlpsxwogiekzaufyd+b;¢ SARYO>QIUX<GFDLJVTHNP1Z3KC"
+                       "7405689-¨§£ ( m v / W j @ # ? M B € & . % ! ^ \" * , "
+                       "2 ) E : ' = _",
+           "cipher4":  "sneohkbufd;rxtaywiqpzl%c¢+ E>SPNRKLG1XYCUDV<HOIQ2B4JA"
+                       "805679-¨§£€ * j g ^ . v ? @ / Z F = \" N : & ! m # W "
+                       "3 ( T , _ ' )"
+           }
 
 
 class Cipher():
