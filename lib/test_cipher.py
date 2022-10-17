@@ -18,6 +18,20 @@ from cipher import Cipher, CIPHERS
 import pytest
 
 
+def test_ciphers_integrity_lenght():
+    for name in CIPHERS:
+        assert len(CIPHERS.get("plain")) == len(CIPHERS.get(name)), \
+            f"The cipher '{name}' has a different lenght from 'plain'"
+
+
+def test_ciphers_integrity_values():
+    for name in CIPHERS:
+        cipher = Cipher(name)
+        # a decoded cipher table is a plaintext table
+        assert cipher.decode(CIPHERS.get(name)) == CIPHERS.get('plain'), \
+            f"One or more letters in the '{name}' cipher are repeated"
+
+
 def test_cipher_default():
     cipher = Cipher()
     assert cipher.cipher == CIPHERS.get("cipher1")
@@ -41,6 +55,7 @@ def test_cipher_bad_selection():
     with pytest.raises(ValueError):
         cipher = Cipher("foobar")
         assert cipher.cipher is None
+
 
 def test_make_table():
     cipher = Cipher("cipher1")

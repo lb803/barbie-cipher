@@ -14,21 +14,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-CIPHERS = {"plain":    "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                       "0123456789- ' ! \" # % & ( ) * , . ¨ / : ; ? @ ^ _ + "
-                       "< = > ¢ £ § €",
-           "cipher1":  "icolapxstvybjeruknfhqg;dzw >FAUTCYOLVJDZINQKSEHG<.1PB"
-                       "523406789-¨ _ & m @ : \" * ( # W M § ^ , ¢ / ? ! ) % "
-                       "X ' R + € £ =",
-           "cipher2":  "torbiudfhgzcvanqyepskx¢1w; RC>GHAPND<VUBLIKJETOYXM2QF"
-                       "63405789-¨§ ) \" j ? , m # * @ . Z £ ! W + ^ / & ( : "
-                       "1 _ S % = € '",
-           "cipher3":  "hrnctqlpsxwogiekzaufyd+b;¢ SARYO>QIUX<GFDLJVTHNP1Z3KC"
-                       "7405689-¨§£ ( m v / W j @ # ? M B € & . % ! ^ \" * , "
-                       "2 ) E : ' = _",
-           "cipher4":  "sneohkbufd;rxtaywiqpzl%c¢+ E>SPNRKLG1XYCUDV<HOIQ2B4JA"
-                       "805679-¨§£€ * j g ^ . v ? @ / Z F = \" N : & ! m # W "
-                       "3 ( T , _ ' )"
+CIPHERS = {"plain":    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                       "0123456789-'!\"#%&()*,.¨/:;?@^_+<=>¢£§€",
+           "cipher1":  "icolapxstvybjeruknfhqg;dzw>FAUTCYOLVJDZINQKSEHG<.1PB"
+                       "523406789-¨_&m@:\"*(#WM§^,¢/?!)%X'R+€£=",
+           "cipher2":  "torbiudfhgzcvanqyepskx¢1w;RC>GHAPND<VUBLIKJETOYXM2QF"
+                       "63405789-¨§)\"j?,m#*@.Z£!W+^/&(:l_S%=€'",
+           "cipher3":  "hrnctqlpsxwogiekzaufyd+b;¢SARYO>QIUX<GFDLJVTHNP1Z3KC"
+                       "7405689-¨§£(mv/Wj@#?MB€&.%!^\"*,2)E:'=_",
+           "cipher4":  "sneohkbufd;rxtaywiqpzl%c¢+E>SPMRKLG1XYCUDV<HOIQ2B4JA"
+                       "805679-¨§£€*jg^.v?@/ZF=\"N:&!m#W3(T,_')"
            }
 
 
@@ -38,7 +33,7 @@ class Cipher():
         self.cipher = CIPHERS.get(cipher)
 
         if self.cipher is None:
-            raise ValueError(f"The requested cipher '{cipher} does not exist")
+            raise ValueError(f"The requested cipher '{cipher}' does not exist")
 
         self.code_table = self.make_table(CIPHERS.get("plain"), self.cipher)
         self.decode_table = self.make_table(self.cipher, CIPHERS.get("plain"))
