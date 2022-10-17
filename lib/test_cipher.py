@@ -38,32 +38,48 @@ def test_cipher_selection():
 
 
 def test_cipher_bad_selection():
-    cipher = Cipher("foobar")
-    assert cipher.cipher is None
+    with pytest.raises(ValueError):
+        cipher = Cipher("foobar")
+        assert cipher.cipher is None
+
+def test_make_table():
+    cipher = Cipher("cipher1")
+    assert cipher.code_table == str.maketrans(CIPHERS.get("plain"), CIPHERS.get("cipher1"))
 
 
 def test_letter_sub():
-    letter1 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
-                                CIPHERS.get("cipher1"))
-    assert letter1 == "."
-
-    letter2 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
-                                CIPHERS.get("cipher2"))
-    assert letter2 == "M"
-
-    letter3 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
-                                CIPHERS.get("cipher3"))
-    assert letter3 == "Z"
-
-    letter4 = Cipher.letter_sub(Cipher, "W", CIPHERS.get("plain"),
-                                CIPHERS.get("cipher4"))
-    assert letter4 == "B"
+    config = [
+        {
+            "cipher": "cipher1",
+            "plain_letter": "W",
+            "coded_letter": "."
+        },
+        {
+            "cipher": "cipher2",
+            "plain_letter": "W",
+            "coded_letter": "M"
+        },
+        {
+            "cipher": "cipher3",
+            "plain_letter": "W",
+            "coded_letter": "Z"
+        },
+        {
+            "cipher": "cipher4",
+            "plain_letter": "W",
+            "coded_letter": "B"
+        }
+    ]
+    for c in config:
+        cipher = Cipher(c.get("cipher"))
+        letter = cipher.letter_sub(c.get("plain_letter"), cipher.code_table)
+        assert letter == c.get("coded_letter")
 
 
 def test_letter_fallback_sub():
+    cipher = Cipher("cipher1")
     # the symbol ¬ is not in the cipher
-    letter = Cipher.letter_sub(Cipher, "¬", CIPHERS.get("plain"),
-                               CIPHERS.get("cipher1"))
+    letter = cipher.letter_sub("¬", cipher.code_table)
     assert letter == "¬"
 
 

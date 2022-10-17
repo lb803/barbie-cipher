@@ -37,21 +37,24 @@ class Cipher():
         """Define which cipher to use for message coding/decoding"""
         self.cipher = CIPHERS.get(cipher)
 
-    def letter_sub(self, letter: str, source: str, destination: str) -> str:
-        """Perform letter substitution from source to destination table"""
-        table = str.maketrans(source, destination)
+        if self.cipher is None:
+            raise ValueError(f"The requested cipher '{cipher} does not exist")
+
+        self.code_table = self.make_table(CIPHERS.get("plain"), self.cipher)
+        self.decode_table = self.make_table(self.cipher, CIPHERS.get("plain"))
+
+    def make_table(self, source: dict, destination: dict) -> dict:
+        """Create a translation table from source to destination"""
+        return str.maketrans(source, destination)
+
+    def letter_sub(self, letter: str, table: dict) -> str:
+        """Perform letter substitution using the given translation table"""
         return letter.translate(table)
 
     def code(self, msg: str) -> str:
         """Code message with one of the ciphers"""
-        source = CIPHERS.get("plain")
-        coded_msg = "".join(self.letter_sub(x, source, self.cipher)
-                            for x in msg)
-        return coded_msg
+        return "".join(self.letter_sub(x, self.code_table) for x in msg)
 
     def decode(self, msg: str) -> str:
         """Decode message with one of the ciphers"""
-        destination = CIPHERS.get("plain")
-        decoded_msg = "".join(self.letter_sub(x, self.cipher, destination)
-                              for x in msg)
-        return decoded_msg
+        return "".join(self.letter_sub(x, self.decode_table) for x in msg)
